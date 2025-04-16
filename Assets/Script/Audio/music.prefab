@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3448266519290800045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5834338614231040185}
+  - component: {fileID: 2456674248734792150}
+  m_Layer: 0
+  m_Name: music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5834338614231040185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448266519290800045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2456674248734792150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448266519290800045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0916a09905b6f784a98c230acd8a1c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioTypes:
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d686753e249edeb479657e6b5dc896a0, type: 3}
+    Name: "\u80CC\u666F"
+    Volume: 0.525
+    Loop: 1
+    PlayOnAwake: 1
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 2819f4685c8a6274191d0cdd80944206, type: 3}
+    Name: "\u666E\u653B\u51FB\u4E2D"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 7722b8d423c3a1543abdd6099e72bc99, type: 3}
+    Name: "\u8F68\u8FF9"
+    Volume: 0.758
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: bee47542086111848b47699098699fc4, type: 3}
+    Name: "\u706B\u7403\u6254"
+    Volume: 0.796
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: cbb49b129c9384e41b11c9a108a5a548, type: 3}
+    Name: "\u706B\u7403\u7206\u70B8"
+    Volume: 0.796
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: b8708996005a4094a8254b0f9913a5d9, type: 3}
+    Name: "\u6FC0\u5149\u70AE"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 4d8569382eca71f41849854d4b664769, type: 3}
+    Name: "\u5C71\u6D77\u8F70"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 245fb5414186d06499146af048138091, type: 3}
+    Name: "\u51B0\u5203"
+    Volume: 0.796
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 73e926ca622a55d4f95e8061c6c5fa5f, type: 3}
+    Name: "\u6C34\u73AF\u51FB\u4E2D"
+    Volume: 0.796
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: ed5c439530c3f0043aecebc5a104aa12, type: 3}
+    Name: "\u6C34\u73AF\u5FAA\u73AF"
+    Volume: 1
+    Loop: 1
+    PlayOnAwake: 1
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d6c8e9685a888bd4da9139c4d92c5022, type: 3}
+    Name: "\u6C341"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: bb273a8c0f2db2246bb500fff8c48333, type: 3}
+    Name: "\u6C342"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 65ad40550a337c644aa46c55bb8f90dc, type: 3}
+    Name: "\u6C343"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 18cf33d965a4fe047b946b8cafd23c6a, type: 3}
+    Name: "\u811A\u6B651"
+    Volume: 0.57
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d84dd68815f9d464a882781d4ec6b9fe, type: 3}
+    Name: "\u811A\u6B652"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 944b81e1538ecac4c8cb8fc338117aae, type: 3}
+    Name: "\u811A\u6B653"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: e6e8c87e9dea787458fe426b63300cd4, type: 3}
+    Name: "\u811A\u6B654"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 156bc1ca03b0efa4f921998452b84b8b, type: 3}
+    Name: "\u811A\u6B655"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 9b1fc10c7e53c2e4381d3ecbf2a4f18f, type: 3}
+    Name: "\u811A\u6B656"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: fed7e2de190150e4d8635cbe47247fa9, type: 3}
+    Name: "\u6728\u677F\u811A\u6B65"
+    Volume: 0.055
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 187957060b4842946aaeab66b5cc2f8a, type: 3}
+    Name: "\u77F3\u677F\u811A\u6B651"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 9a14176ace0ebbe47a2f9e098f2759c5, type: 3}
+    Name: "\u77F3\u677F\u811A\u6B652"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 1
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 2f87c26a813694549afca26f097edfa3, type: 3}
+    Name: "\u77F3\u677F\u811A\u6B653"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d998ec3ae0fe4464a8679317af6872b4, type: 3}
+    Name: "\u77F3\u677F\u811A\u6B654"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 4e5756c967bc29f4aa8b349bbd88bac1, type: 3}
+    Name: "\u9CB21"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 4e5756c967bc29f4aa8b349bbd88bac1, type: 3}
+    Name: "\u9CB22"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: d99958afc266df64e81214d89135cf31, type: 3}
+    Name: "\u9CB23"
+    Volume: 1
+    Loop: 0
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: ade7815a156701244bf4e1b0e612098c, type: 3}
+    Name: "\u98CE\u58F0"
+    Volume: 0.058
+    Loop: 1
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 0eca93a50034a9642a896c957432da20, type: 3}
+    Name: "\u6218\u6597"
+    Volume: 1
+    Loop: 1
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 1439907e0a01f454db05fbebc5ddb5ee, type: 3}
+    Name: "\u5212\u8FC7\u97F3\u6548"
+    Volume: 1
+    Loop: 1
+    PlayOnAwake: 0
+  - Source: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 7b068878db24175408ee9895713a0822, type: 3}
+    Name: "\u70B9\u51FB\u97F3\u6548"
+    Volume: 1
+    Loop: 1
+    PlayOnAwake: 0
