@@ -30,6 +30,10 @@ public class Anim_Fox : MonoBehaviour
         {
             anim.ResetTrigger("Die");
         }
+        if (stateInfo.IsName("Idle2") && stateInfo.normalizedTime >= 1.0f)
+        {
+            change_anim(Anim_state.Idle);
+        }
     }
 
     public void change_anim(Anim_state state)

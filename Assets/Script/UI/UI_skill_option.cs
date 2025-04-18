@@ -16,11 +16,13 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public GameObject _skill_text;
     public GameObject _selection;
 
+
     private Upgrade_value_sc _upgrade;
     private Image _image;
     private Up_grade_panel_sc _upgrade_panel;
     private C_attribute _attr;
     private C_upgrade_attr _upgrade_attr;
+
 
 
 
@@ -32,6 +34,7 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         _selection.SetActive(false);
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,9 +63,12 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
             _upgrade = GameObject.Find("Upgrade_value").GetComponent<Upgrade_value_sc>();
         if (_image == null)
             _image = transform.GetComponent<Image>();
+
         _selection.SetActive(false);
         Get_Card();
         Upgrade_processing();
+
+
     }
 
 
@@ -241,39 +247,6 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
             _upgrade_info = _upgrade_attr.Get_info(2);
 
         }
-        // 重复判断，保证不重复
-        //if (transform.name == "option_1")
-        //{
-        //    int randomIndex = Random.Range(0, _upgrade.infos.Count);
-        //    _upgrade_info = _upgrade.infos[randomIndex];
-        //}
-        //else
-        //{
-        //    bool isUnique = false;
-        //    do
-        //    {
-        //        if (transform.name == "option_2")
-        //        {
-        //            int randomIndex = Random.Range(0, _upgrade.infos.Count);
-        //            _upgrade_info = _upgrade.infos[randomIndex];
-        //            int option1Info_ID = GameObject.Find("option_1").GetComponent<UI_skill_option>()._upgrade_info.attr_ID;
-        //            isUnique = _upgrade_info.attr_ID != option1Info_ID;
-        //        }
-        //        else if (transform.name == "option_3")
-        //        {
-        //            int option1Info_ID = GameObject.Find("option_1").GetComponent<UI_skill_option>()._upgrade_info.attr_ID;
-        //            int option2Info_ID = GameObject.Find("option_2").GetComponent<UI_skill_option>()._upgrade_info.attr_ID;
-        //            int randomIndex = Random.Range(0, _upgrade.infos.Count);
-        //            _upgrade_info = _upgrade.infos[randomIndex];
-        //            isUnique = _upgrade_info.attr_ID != option1Info_ID && _upgrade_info.attr_ID != option2Info_ID;
-        //        }
-        //        else
-        //        {
-        //            isUnique = true;
-        //        }
-        //    } while (!isUnique);
-
-        //}
     }
 
     public void BTN_UI_Click()
@@ -281,6 +254,7 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _upgrade_panel.Hide_UI();
         _attr.C_Upgrade_Fun(_upgrade_info);
     }
+
 
 
 }

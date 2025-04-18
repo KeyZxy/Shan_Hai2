@@ -113,6 +113,7 @@ public class Up_grade_panel_sc : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         _cam.Set_Paused(true);
         _base.Set_Paused(true);
+        CreateTemporaryBlocker(); // 添加这个遮罩
         StartCoroutine(ShowUIWithAnimation());
     }
     public void Hide_UI()
@@ -134,4 +135,36 @@ public class Up_grade_panel_sc : MonoBehaviour
         opt_3.transform.position = startOffscreenPos_3;
     }
 
+    void CreateTemporaryBlocker()
+    {
+        Canvas canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogWarning("找不到父级Canvas，无法创建遮罩");
+            return;
+        }
+
+        GameObject blocker = new GameObject("UI_Blocker");
+        blocker.transform.SetParent(canvas.transform, false);
+
+        RectTransform rect = blocker.AddComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        Image img = blocker.AddComponent<Image>();
+        img.color = new Color(0, 0, 0, 0);
+        img.raycastTarget = true;
+
+        blocker.transform.SetAsLastSibling();
+
+        // 开启协程用Realtime方式销毁
+        StartCoroutine(DestroyBlockerAfterDelay(blocker, 1f));
+    }
+    IEnumerator DestroyBlockerAfterDelay(GameObject blocker, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Destroy(blocker);
+    }
 }

@@ -410,7 +410,7 @@ public class C_base : MonoBehaviour
     void jiguangbo()
     {
         //    Free_view = false;
-        _attr.Stop_move(true);
+        //_attr.Stop_move(true);
         skill_1_cd = true;
         GameObject jiguangbo = ResourceManager.Instance.GetResource<GameObject>("Particle/jiguangbo/jiguangb");
         AudioManager.instance.PlayFX("激光炮");
@@ -673,9 +673,13 @@ public class C_base : MonoBehaviour
             StartCoroutine(DashForward());
         }
         // 鼠标左键
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(jiguangbo_ready)
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            if (jiguangbo_ready)
             {
                 jiguangbo_ready = false;
                 jiguangbo();
@@ -688,9 +692,7 @@ public class C_base : MonoBehaviour
             else
             {
                 Normal_atk();
-            }
-            
-            
+            } 
         }
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
