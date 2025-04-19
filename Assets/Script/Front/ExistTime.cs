@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,13 @@ public class ExistTime : MonoBehaviour
     public Text existtime;         // 存活时间文本  
     public Text grade;             // 等级文本  
     private Camera_move _cam;
+    private bool isdead;
+    public Text KillAmount;
+    private int kill;
+    public Text CauseDamage;
+    private int causedamage;
+    public Text TakeDamage;
+    private int takedamage;
 
     // 引用其他 UI 元素  
     public GameObject cardUI;      // 抽卡 UI
@@ -43,6 +51,10 @@ public class ExistTime : MonoBehaviour
         zhudong2.gameObject.SetActive(false);
         survivalTime = 0f; // 初始化存活时间  
         death.SetActive(false);
+        kill = 0;
+        causedamage = 0;
+        takedamage = 0;
+        isdead = false;
     }
 
     void Update()
@@ -50,13 +62,14 @@ public class ExistTime : MonoBehaviour
         if (player == null || timeText == null) return;
 
         // 如果玩家未死亡，增加存活时间  
-        if (!player.isDie)
+        if (!isdead)
         {
             survivalTime += Time.deltaTime;
             HandleCD();  // 更新冷却时间  
            zhudong1.text = Mathf.CeilToInt(cd1).ToString() + "s";
            zhudong2.text = Mathf.CeilToInt(cd2).ToString() + "s";
             timeText.text = FormatTime(survivalTime);
+            
         }
         else
         {
@@ -65,9 +78,37 @@ public class ExistTime : MonoBehaviour
             {
                 StartCoroutine(HandlePlayerDeath());
             }
-
-           
         }
+    }
+    private void OnEnable()
+    {
+        E_base.OnEnemyDeath += OnKill;
+        E_base.OnEnemyTakeDamage += OnCauseDamage;
+        C_base.OnPlayerTakeDamage += OnTakeDamage;
+        C_base.OnPlayerDeath += OnDeath;
+    }
+    private void OnDisable()
+    {
+        E_base.OnEnemyDeath -= OnKill;
+        E_base.OnEnemyTakeDamage -= OnCauseDamage;
+        C_base.OnPlayerTakeDamage -= OnTakeDamage;
+        C_base.OnPlayerDeath -= OnDeath;
+    }
+    private void OnDeath()
+    {
+        isdead = true;
+    }
+    private void OnKill()
+    {
+        kill++;
+    }
+    private void OnCauseDamage(int damage)
+    {
+        causedamage += damage;
+    }
+    private void OnTakeDamage(int damage)
+    {
+        takedamage += damage;
     }
     private void HandleCD()
     {
@@ -125,6 +166,9 @@ public class ExistTime : MonoBehaviour
         // 玩家死亡时显示死亡 UI 并禁用其他 UI  
         death.SetActive(true);
         existtime.text = FormatTime(survivalTime);
+        KillAmount.text=kill.ToString();
+        CauseDamage.text=causedamage.ToString();
+        TakeDamage.text=takedamage.ToString();
         grade.text = playerat.Get_grade().ToString();
         DisableOtherUI();
         _cam.Set_Paused(true);
