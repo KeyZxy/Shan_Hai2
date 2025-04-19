@@ -57,7 +57,7 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
         
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         if(_upgrade == null)
             _upgrade = GameObject.Find("Upgrade_value").GetComponent<Upgrade_value_sc>();
@@ -226,7 +226,7 @@ public class UI_skill_option : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
 
 
-    void Get_Card()
+    public void Get_Card()
     {
         if(_upgrade_attr == null)
             _upgrade_attr = GameObject.FindGameObjectWithTag(SaveKey.Character).GetComponent<C_upgrade_attr>();

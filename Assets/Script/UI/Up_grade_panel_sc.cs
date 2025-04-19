@@ -167,4 +167,15 @@ public class Up_grade_panel_sc : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
         Destroy(blocker);
     }
+    public void RefreshUI()
+    {
+        StartCoroutine(ShowUIWithAnimation());
+        opt_1.GetComponent<UI_skill_option>().Get_Card();
+        opt_2.GetComponent<UI_skill_option>().Get_Card();
+        opt_3.GetComponent<UI_skill_option>().Get_Card();
+        foreach (var option in new GameObject[] { opt_1, opt_2, opt_3 })
+        {
+            option.GetComponent<UI_skill_option>().OnEnable();  
+        }
+    }
 }
