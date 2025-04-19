@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class ExistTime : MonoBehaviour
 {
-    public C_base player;          // 玩家引用  
+    private C_base player;          // 玩家引用  
     public Text timeText;          // 显示存活时间的UI文本  
-    public C_attribute playerat;
+    private C_attribute playerat;
+    private C_upgrade_attr playerup;
     private float survivalTime;    // 存活时间  
     public GameObject death;       // 死亡 UI  
     public Text existtime;         // 存活时间文本  
@@ -21,7 +22,11 @@ public class ExistTime : MonoBehaviour
     private int causedamage;
     public Text TakeDamage;
     private int takedamage;
-
+    
+    public Text jin;
+    public Text huo;
+    public Text shui;
+    public Text jian;
     // 引用其他 UI 元素  
     public GameObject cardUI;      // 抽卡 UI
     public GameObject mainUI;        // 基础UI
@@ -44,6 +49,7 @@ public class ExistTime : MonoBehaviour
         // 获取玩家组件  
         player = GameObject.Find("Player")?.GetComponent<C_base>();
         playerat = GameObject.Find("Player")?.GetComponent<C_attribute>();
+        playerup= GameObject.Find("Player")?.GetComponent<C_upgrade_attr>();
         _cam = GameObject.Find("Main Camera").transform.GetComponent<Camera_move>();
         cd1 = player.skill_class[1].CD;
         cd2 = player.skill_class[2].CD;
@@ -170,6 +176,27 @@ public class ExistTime : MonoBehaviour
         CauseDamage.text=causedamage.ToString();
         TakeDamage.text=takedamage.ToString();
         grade.text = playerat.Get_grade().ToString();
+
+        jin.text = player.skill_class[0].Lv.ToString();
+        for (int i = 0; i < playerup.passive_infos.Count; i++)
+        {
+            if (playerup.passive_infos[i].attr_ID == 220001)
+            {
+                jian.text= playerup.passive_infos[i].type_skill.Lv.ToString();
+            }
+            else if (playerup.passive_infos[i].attr_ID == 220002)
+            {
+                huo.text = playerup.passive_infos[i].type_skill.Lv.ToString();
+            }
+            else if (playerup.passive_infos[i].attr_ID == 220003)
+            {
+                shui.text = playerup.passive_infos[i].type_skill.Lv.ToString();
+            }
+            else
+            {
+                break;
+            }
+        }
         DisableOtherUI();
         _cam.Set_Paused(true);
         player.Set_Paused(true);
