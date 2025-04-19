@@ -131,14 +131,15 @@ public class xiaopaozhang_sc : MonoBehaviour
                     if (distance <= _atk_distance)
                     {
                         Vector3 origin = transform.position + Vector3.up * 1.2f;
-                        Vector3 target = enemy.transform.position + Vector3.up * 1.2f;
+                        Vector3 target = enemy.transform.position + Vector3.up * 0.5f;
+
                         Vector3 direction = (target - origin).normalized;
 
-                    //    Debug.DrawLine(origin, target, Color.red, 1f); // 调试射线
+                        Debug.DrawLine(origin, target, Color.red, 1f); // 调试射线
 
                         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
                         {
-                    //        Debug.Log("命中的物体: " + hit.collider.name); // 输出射线命中的目标名称
+                            Debug.Log("命中的物体: " + hit.collider.name); // 输出射线命中的目标名称
 
                             if (hit.collider.gameObject == enemy)
                             {

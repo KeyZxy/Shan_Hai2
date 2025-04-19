@@ -164,7 +164,7 @@ public class E_deer : E_base
             // 两个技能都在冷却，强制普通攻击
             Current_atk_state = 1;
         }
-        Debug.Log(Current_atk_state);
+        //Debug.Log(Current_atk_state);
 
     }
 
