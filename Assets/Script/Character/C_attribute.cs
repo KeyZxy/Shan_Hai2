@@ -266,6 +266,10 @@ public class C_attribute : MonoBehaviour
         c_Value.stamina = value;
     }
 
+    public void Set_move_speed(float speed)
+    {
+        c_Value.move_speed = speed;
+    }
 
     // Get函数
     public string Get_ID()

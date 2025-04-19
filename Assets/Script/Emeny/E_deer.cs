@@ -22,6 +22,9 @@ public class E_deer : E_base
     private float dashTime = 0.7f;  // 冲刺持续时间
     private float dashTimer = 0f;  // 计时器
 
+    private float change_state_time = 15f;
+    private float change_state_timer = 0f;
+
     private GameObject kaishi;
     private GameObject chongci_1;
     private GameObject chongci_2;
@@ -112,6 +115,8 @@ public class E_deer : E_base
 
     void Random_next_state()
     {
+        change_state_timer = 0;
+
         if (skill_atk_timer == 0 && skill_buff_timer == 0)
         {
             // 两个技能都可用，按 30% / 30% / 40% 概率选择
@@ -159,7 +164,7 @@ public class E_deer : E_base
             // 两个技能都在冷却，强制普通攻击
             Current_atk_state = 1;
         }
-    //    Debug.Log(Current_atk_state);
+        Debug.Log(Current_atk_state);
 
     }
 
@@ -169,7 +174,7 @@ public class E_deer : E_base
         transform.LookAt(posi);
 
         float distance = Vector3.Distance(transform.position, _target.position);
-        if ((distance <= e_value.attack_distance * 2f))
+        if ((distance <= e_value.attack_distance * 4f))
         {
             // 到达距离
             isAttack = true;
@@ -257,6 +262,11 @@ public class E_deer : E_base
             Vector3 move = moveDirection * e_value.move_speed * Time.fixedDeltaTime;
             C_ctr.Move(move);
             _anim.change_anim(Anim_state.Run);
+            change_state_timer += Time.deltaTime;
+            if (change_state_timer >= change_state_time)
+            {
+                Random_next_state();
+            }
         }
     }
 

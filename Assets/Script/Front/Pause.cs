@@ -12,19 +12,30 @@ public class Pause : MonoBehaviour
     private Camera_move _cam;
     private C_base _base;
     public Fade fade;
-
+    private bool isdead;
     public GameObject upp;
     void Start()
     {
         _cam = GameObject.Find("Main Camera").transform.GetComponent<Camera_move>();
         _base = GameObject.FindGameObjectWithTag(SaveKey.Character).GetComponent<C_base>();
         YingshentuUI.SetActive(false);
-        
+        isdead = false;
     }
-
+    private void OnEnable()
+    {
+        C_base.OnPlayerDeath += OnDeath;
+    }
+    private void OnDisable()
+    {
+        C_base.OnPlayerDeath -= OnDeath;
+    }
+    private void OnDeath()
+    {
+        isdead = true;
+    }
     void Update()
     {
-        if (_base.isDie)
+        if (isdead)
         {
             pauseMenuUI.SetActive(false);
             return;
@@ -32,9 +43,7 @@ public class Pause : MonoBehaviour
         // 按下ESC键时触发暂停  
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
-                Paused();
-            
+            Paused();
         }
     }
 

@@ -30,7 +30,7 @@ public class C_base : MonoBehaviour
     private Target_lock_sc _Lock_Sc;
     private ParticleSystem _chongci;
 
-    public bool isDie = false;
+    private bool isDie = false;
     private bool isStop = false;
     private bool sprint = false;
     private bool Jumping = false;
@@ -56,6 +56,7 @@ public class C_base : MonoBehaviour
     private float skill_move_speed = 2f;
     public bool skill_1_cd = false;
     public bool skill_2_cd = false;
+    private float original_move_speed;
 
     // 定义音效数组
     string[] footstepSounds = { "脚步1", "脚步2", "脚步3", "脚步4", "脚步5", "脚步6" };
@@ -392,6 +393,8 @@ public class C_base : MonoBehaviour
         _anim.change_anim(Anim_state.Ready);
         Free_view = false;
         jiguangbo_ready = true;
+        original_move_speed = _attr.c_Value.move_speed;
+        _attr.Set_move_speed(_attr.c_Value.move_speed / 2);
         _cam.GetComponent<Camera_move>().Act_second_view(true);
     }
     void huongjue_start()
@@ -410,7 +413,7 @@ public class C_base : MonoBehaviour
     void jiguangbo()
     {
         //    Free_view = false;
-        _attr.Stop_move(true);
+        //_attr.Stop_move(true);
         skill_1_cd = true;
         GameObject jiguangbo = ResourceManager.Instance.GetResource<GameObject>("Particle/jiguangbo/jiguangb");
         AudioManager.instance.PlayFX("激光炮");
@@ -453,6 +456,7 @@ public class C_base : MonoBehaviour
         StartCoroutine(DelayFunctionTrigger(0.3f, jiguangbo_destory));
         _cam.GetComponent<Camera_move>().Act_second_view(false);
         jiguangbo_ready = false;
+        _attr.Set_move_speed(original_move_speed);
     }
     void jiguangbo_destory()
     {
@@ -673,11 +677,15 @@ public class C_base : MonoBehaviour
             StartCoroutine(DashForward());
         }
         // 鼠标左键
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(jiguangbo_ready)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                jiguangbo_ready = false;
+                return;
+            }
+            if (jiguangbo_ready)
+            {
+            //    jiguangbo_ready = false;
                 jiguangbo();
             }
             else if(huongJue_ready)
@@ -688,9 +696,7 @@ public class C_base : MonoBehaviour
             else
             {
                 Normal_atk();
-            }
-            
-            
+            } 
         }
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {

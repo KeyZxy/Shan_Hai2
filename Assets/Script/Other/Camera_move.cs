@@ -12,6 +12,7 @@ public class Camera_move : MonoBehaviour
     public Vector3 aimPivotOffset = new Vector3(0.5f, 1.2f, 0f);         // Offset to repoint the camera when aiming.
     public Vector3 aimCamOffset = new Vector3(0f, 0.4f, -0.7f);         // Offset to relocate the camera when aiming.
     public float smooth = 10f;                                         // Speed of camera responsiveness.
+    public LayerMask collisionMask = ~0;                            // 默认全部检测（可在 Inspector 上勾选排除 Layer）
 
     private Transform player;                                           // Player's reference.
     private Transform cam;                                             // This transform.
@@ -124,7 +125,7 @@ public class Camera_move : MonoBehaviour
         Vector3 target = player.position + pivotOffset;
         Vector3 direction = target - checkPos;
         // If a raycast from the check position to the player hits something...
-        if (Physics.SphereCast(checkPos, 0.2f, direction, out RaycastHit hit, direction.magnitude))
+        if (Physics.SphereCast(checkPos, 0.2f, direction, out RaycastHit hit, direction.magnitude, collisionMask))
         {
             // ... if it is not the player...
             if (hit.transform != player && !hit.transform.GetComponent<Collider>().isTrigger)
@@ -142,7 +143,7 @@ public class Camera_move : MonoBehaviour
         // Cast origin and direction.
         Vector3 origin = player.position + pivotOffset;
         Vector3 direction = checkPos - origin;
-        if (Physics.SphereCast(origin, 0.2f, direction, out RaycastHit hit, direction.magnitude))
+        if (Physics.SphereCast(origin, 0.2f, direction, out RaycastHit hit, direction.magnitude, collisionMask))
         {
             if (hit.transform != player && hit.transform != transform && !hit.transform.GetComponent<Collider>().isTrigger)
             {

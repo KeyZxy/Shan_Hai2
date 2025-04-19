@@ -46,48 +46,54 @@ public class xiaopaozhang_sc : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (isStart)
         {
             transform.position = _target.position;
-            follow_character();
+            FollowCharacter();
 
         }
 
     }
 
 
-    void follow_character()
+    void FollowCharacter()
     {
-        // 计算当前对象与主角的 X-Z 平面距离（忽略 Y 轴）
-        Vector3 flatPosition = new Vector3(_lantern_tr.position.x, transform.position.y, _lantern_tr.position.z);
-        float distance = Vector3.Distance(flatPosition, transform.position);
+        // 计算水平距离（忽略 Y）
+        Vector3 flatSelf = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 flatTarget = new Vector3(_lantern_tr.position.x, 0, _lantern_tr.position.z);
+        float distance = Vector3.Distance(flatSelf, flatTarget);
 
+        // 判断是否需要跟随
         if (distance > follow_distance)
         {
-            isFollowing = true; // 开启跟随
+            isFollowing = true;
         }
         else if (distance < stop_distance)
         {
-            isFollowing = false; // 停止跟随
+            isFollowing = false;
         }
 
         if (isFollowing)
         {
-            // 让 Y 轴高度比 _target 高 2f
-            Vector3 targetPosition = new Vector3(transform.position.x, _target.position.y + 2f, transform.position.z);
+            // 目标位置（主角位置 + Y轴偏移）
+            Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y + 2f, _target.position.z);
 
-            // 让物体朝向目标位置（仍然忽略 Y 轴旋转）
-            _lantern_tr.LookAt(new Vector3(transform.position.x, _lantern_tr.position.y, transform.position.z));
+            // 平滑朝向
+            Vector3 lookDir = (targetPosition - _lantern_tr.position).normalized;
+            lookDir.y = 0; // 忽略Y方向
+            if (lookDir != Vector3.zero)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(lookDir);
+                _lantern_tr.rotation = Quaternion.Slerp(_lantern_tr.rotation, targetRot, Time.deltaTime * 5f);
+            }
 
-            // 计算动态速度
+            // 平滑移动速度
             float speed = Mathf.Lerp(minSpeed, move_speed, (distance - stop_distance) / (follow_distance - stop_distance));
 
-            // 计算移动方向
+            // 平滑位置
             Vector3 moveDirection = (targetPosition - _lantern_tr.position).normalized;
-
-            // 使用 Move() 进行移动
             _lantern_ctr.Move(moveDirection * speed * Time.deltaTime);
         }
     }
@@ -124,7 +130,21 @@ public class xiaopaozhang_sc : MonoBehaviour
                     float distance = Vector3.Distance(transform.position, enemy.transform.position);
                     if (distance <= _atk_distance)
                     {
-                        validEnemies.Add(enemy);
+                        Vector3 origin = transform.position + Vector3.up * 1.2f;
+                        Vector3 target = enemy.transform.position + Vector3.up * 1.2f;
+                        Vector3 direction = (target - origin).normalized;
+
+                    //    Debug.DrawLine(origin, target, Color.red, 1f); // 调试射线
+
+                        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+                        {
+                    //        Debug.Log("命中的物体: " + hit.collider.name); // 输出射线命中的目标名称
+
+                            if (hit.collider.gameObject == enemy)
+                            {
+                                validEnemies.Add(enemy);
+                            }
+                        }
                     }
                 }
 

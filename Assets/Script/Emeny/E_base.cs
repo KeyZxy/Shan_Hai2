@@ -84,6 +84,7 @@ public class E_base : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        
         if (isAttack || isDie || In_atk_are || Out_area || walking)
         {
             Random_walk_time();
@@ -93,8 +94,11 @@ public class E_base : MonoBehaviour
         walk_timer += Time.deltaTime;
         if (walk_timer > walk_time)
         {
-            walking = true;
-            walk_destination = GetRandomPosi(original_posi, 5, 5);
+            // 暂时取消自由移动，防止卡地形
+            // walking = true;
+            //    walk_destination = GetRandomPosi(original_posi, 5, 5);
+            _anim.change_anim(Anim_state.Idle2);
+            walk_timer = 0;
         }
     }
 
@@ -388,7 +392,7 @@ public class E_base : MonoBehaviour
 
     protected void Random_walk_time()
     {
-        walk_time = UnityEngine.Random.Range(3f, 8f);
+        walk_time = UnityEngine.Random.Range(5f, 10f);
     }
 
     protected virtual IEnumerator delay_Active_attack(float time)

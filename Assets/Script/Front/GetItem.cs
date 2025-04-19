@@ -41,7 +41,10 @@ public class GetItem : MonoBehaviour
             { 200017, itemObjects[9] },  // tai  
             { 200011, itemObjects[10] },  // hu  
             { 200015, itemObjects[11] },  // cai 
-            { 200016, itemObjects[12] }  // shan  
+            { 200016, itemObjects[12] },  // shan
+            { 200005, itemObjects[13] }, // shanbi
+            { 200006, itemObjects[14] }, // baoji
+            { 200007, itemObjects[15] }, // baojishanghai
         };
 
         // 将所有的道具 GameObject 设置为不可见  
@@ -81,7 +84,7 @@ public class GetItem : MonoBehaviour
                 {
                     targetPosition += offset1;
                 }
-                else if (info.attr_ID == 200008) // shenmuqin  
+                else if (info.attr_ID == 200008) // yazhui 
                 {
                     targetPosition += offset2;
                 }
