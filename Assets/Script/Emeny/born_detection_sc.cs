@@ -18,6 +18,7 @@ public class born_detection_sc : MonoBehaviour
     public float Live_time;
     private float time = 0;
     public List<GameObject> cube;
+    public List<GameObject> Obscalecube;
 
     public Vector3 tiaozhengchuxian;
     public Vector3 tiaozhengchixu;
@@ -35,6 +36,14 @@ public class born_detection_sc : MonoBehaviour
             if (cube[i] != null)
             {
                 cube[i].gameObject.GetComponent<BoxCollider>().isTrigger=false;
+            }
+        }
+        for (int i = 0; i < Obscalecube.Count; i++)
+        {
+            if (Obscalecube[i] != null)
+            {
+                Obscalecube[i].gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                Obscalecube[i].gameObject.SetActive(false);
             }
         }
     }
@@ -62,6 +71,14 @@ public class born_detection_sc : MonoBehaviour
             return;
         if (other.CompareTag(SaveKey.Character))
         {
+            for (int i = 0; i < cube.Count; i++)
+            {
+                if (cube[i] != null)
+                {
+                    Obscalecube[i].gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    Obscalecube[i].gameObject.SetActive(true);
+                }
+            }
             jface.gameObject.SetActive(true);
             juanzhou.change_anim(Anim_state.Open);
             StartCoroutine(Startfbx());
