@@ -100,14 +100,19 @@ public class C_base : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Equals))
-        {
-            if (AudioManager.instance.IsPlaying("背景") || AudioManager.instance.IsPlaying("战斗"))
-            {
-                AudioManager.instance.Stop("背景");
-                AudioManager.instance.Stop("战斗");
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Equals))
+        //{
+        //    if (AudioManager.instance.IsPlaying("背景") || AudioManager.instance.IsPlaying("战斗"))
+        //    {
+        //        AudioManager.instance.Stop("背景");
+        //        AudioManager.instance.Stop("战斗");
+        //    }
+        //    if (!AudioManager.instance.IsPlaying("背景") || !AudioManager.instance.IsPlaying("战斗"))
+        //    {
+        //        AudioManager.instance.PlayWaterBGM("背景");
+        //        AudioManager.instance.PlayWaterBGM("战斗");
+        //    }
+        //}
         if (isDie || isPaused) return;
 
         Key_Check();
