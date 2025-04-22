@@ -18,9 +18,8 @@ public class Victory : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        if (time > Live_time&& !bounds.Contains(GameObject.Find(SaveKey.Enemy).transform.position))
+        if (time > Live_time/*&& !bounds.Contains(GameObject.Find(SaveKey.Enemy).transform.position)*/)
         {
-
             transform.Find("´«ËÍÃÅ").gameObject.SetActive(true);
             this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
         }

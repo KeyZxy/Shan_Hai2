@@ -7,7 +7,7 @@ public class born_detection_sc : MonoBehaviour
     // Start is called before the first frame update
 
     public List<GameObject> born_obj = new List<GameObject>();
-
+    
     private bool isAct = false;
 
     public GameObject juanzhouObj;
@@ -19,11 +19,15 @@ public class born_detection_sc : MonoBehaviour
     private float time = 0;
     public List<GameObject> cube;
     public List<GameObject> Obscalecube;
-
+    public GameObject Victorycube;
     public Vector3 tiaozhengchuxian;
     public Vector3 tiaozhengchixu;
     void Start()
     {
+        if (Victorycube != null)
+        {
+            Victorycube.SetActive(false);
+        }
         if (juanzhouObj != null)
         {
             juanzhou = juanzhouObj.GetComponent<J_Anim>();
@@ -71,6 +75,10 @@ public class born_detection_sc : MonoBehaviour
             return;
         if (other.CompareTag(SaveKey.Character))
         {
+            if (Victorycube != null)
+            {
+                Victorycube.SetActive(true);
+            }
             for (int i = 0; i < Obscalecube.Count; i++)
             {
                 if (Obscalecube[i] != null)
@@ -79,6 +87,7 @@ public class born_detection_sc : MonoBehaviour
                     Obscalecube[i].gameObject.SetActive(true);
                 }
             }
+            
             jface.gameObject.SetActive(true);
             juanzhou.change_anim(Anim_state.Open);
             StartCoroutine(Startfbx());
