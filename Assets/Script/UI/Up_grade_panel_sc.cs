@@ -24,11 +24,14 @@ public class Up_grade_panel_sc : MonoBehaviour
     private Vector3 startOffscreenPos_2;
     private Vector3 startOffscreenPos_3;
 
-    private int refreshCount = 0; // 添加一个计数器
+    private int refreshCount; // 添加一个计数器
     private const int maxRefreshCount = 3; // 设置最大允许次数
+    private bool isUIVisible = false;
     // Start is called before the first frame update
     void Start()
     {
+        refreshCount = 0;
+
         _image = transform.GetComponent<Image>();
         _cam = GameObject.Find("Main Camera").transform.GetComponent<Camera_move>();
         _base = GameObject.FindGameObjectWithTag(SaveKey.Character).GetComponent<C_base>();
@@ -63,6 +66,8 @@ public class Up_grade_panel_sc : MonoBehaviour
 
     private IEnumerator ShowUIWithAnimation()
     {
+        isUIVisible = true;
+
         opt_1.SetActive(true);
         opt_2.SetActive(true);
         opt_3.SetActive(true);
@@ -134,6 +139,9 @@ public class Up_grade_panel_sc : MonoBehaviour
         opt_1.transform.position = startOffscreenPos_1;
         opt_2.transform.position = startOffscreenPos_2;
         opt_3.transform.position = startOffscreenPos_3;
+
+        isUIVisible = false;  
+        refreshCount = 0;
     }
 
     void CreateTemporaryBlocker()
@@ -170,11 +178,13 @@ public class Up_grade_panel_sc : MonoBehaviour
     }
     public void RefreshUI()
     {
-        if (refreshCount >= maxRefreshCount)
+        if (!isUIVisible || refreshCount >= maxRefreshCount)
         {
-            return; 
+            return;
         }
-        refreshCount++; 
+
+        refreshCount++;
+
         StartCoroutine(ShowUIWithAnimation());
         opt_1.GetComponent<UI_skill_option>().Get_Card();
         opt_2.GetComponent<UI_skill_option>().Get_Card();
@@ -183,5 +193,10 @@ public class Up_grade_panel_sc : MonoBehaviour
         {
             option.GetComponent<UI_skill_option>().OnEnable();  
         }
+
+        //if (refreshCount >= maxRefreshCount)
+        //{
+        //    Hide_UI(); 
+        //}
     }
 }

@@ -66,6 +66,14 @@ public class born_detection_sc : MonoBehaviour
                     cube[i].gameObject.SetActive(false);
                 }
             }
+            for (int i = 0; i < Obscalecube.Count; i++)
+            {
+                if (Obscalecube[i] != null)
+                {
+                    Obscalecube[i].gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                    Obscalecube[i].gameObject.SetActive(false);
+                }
+            }
         }
     }
 
