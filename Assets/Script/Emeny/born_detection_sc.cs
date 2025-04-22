@@ -71,9 +71,9 @@ public class born_detection_sc : MonoBehaviour
             return;
         if (other.CompareTag(SaveKey.Character))
         {
-            for (int i = 0; i < cube.Count; i++)
+            for (int i = 0; i < Obscalecube.Count; i++)
             {
-                if (cube[i] != null)
+                if (Obscalecube[i] != null)
                 {
                     Obscalecube[i].gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     Obscalecube[i].gameObject.SetActive(true);
