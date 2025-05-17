@@ -717,31 +717,31 @@ public class C_base : MonoBehaviour
                 return;
             huongjue_start();
         }
-        if (Input.GetMouseButtonDown(2))
-        {
-            Free_view = false;
-            if (_target)
-                _cam.GetComponent<Camera_move>().SetView(_cam.position, _cam.rotation);
-            _cam.GetComponent<Camera2>().enabled = false;
-            _cam.GetComponent<Camera_move>().enabled = true;
-            _cam.GetComponent<Camera2>().target = null;
-            Target_lock = false;
-        }
-        if (Input.GetMouseButtonUp(2))
-        {
-            if (_target != null)
-            {
-                transform.LookAt(_target);
-                _cam.GetComponent<Camera_move>().enabled = false;
-                _cam.GetComponent<Camera2>().enabled = true;
-                _cam.GetComponent<Camera2>().target = _target;
-                Target_lock = true;
-            }
-            else
-            {
-                Free_view = true;
-            }
-        }
+        //if (Input.GetMouseButtonDown(2))
+        //{
+        //    Free_view = false;
+        //    if (_target)
+        //        _cam.GetComponent<Camera_move>().SetView(_cam.position, _cam.rotation);
+        //    _cam.GetComponent<Camera2>().enabled = false;
+        //    _cam.GetComponent<Camera_move>().enabled = true;
+        //    _cam.GetComponent<Camera2>().target = null;
+        //    Target_lock = false;
+        //}
+        //if (Input.GetMouseButtonUp(2))
+        //{
+        //    if (_target != null)
+        //    {
+        //        transform.LookAt(_target);
+        //        _cam.GetComponent<Camera_move>().enabled = false;
+        //        _cam.GetComponent<Camera2>().enabled = true;
+        //        _cam.GetComponent<Camera2>().target = _target;
+        //        Target_lock = true;
+        //    }
+        //    else
+        //    {
+        //        Free_view = true;
+        //    }
+        //}
         if(Input.GetKeyDown(KeyCode.Space))
         {
             if (jiguangbo_ready || huongJue_ready || sprint)
